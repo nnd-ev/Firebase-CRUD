@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Firebase Crud - nndev</title>
+     
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="css/mdb.min.css" />
+ 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01" style="margin-left: 8%;">
+                <a class="navbar-brand font-weight-bold text-light" href="#" style="font-size: 28px;">Firebase Crud App</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light active" aria-current="page" href="#">Link#1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#" tabindex="-1" aria-disabled="true">Link#2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Link#3</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <form id="add-employee">
+                    <div class="form-outline mb-4">
+                        <input type="text" name="fullname" id="fullname" class="form-control"  autocomplete="off" />
+                        <label class="form-label" for="form4Example1">Full Name</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="number" id="age" name="age" class="form-control" autocomplete="off" />
+                        <label class="form-label" for="form4Example1">Age</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="text" id="address" name="address" class="form-control" />
+                        <label class="form-label" for="form4Example1">Address</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="email" id="email" name="email" class="form-control" />
+                        <label class="form-label" for="form4Example2">Email address</label>
+                    </div>
+                     <input type="hidden" id="id_edit" name="id-edit" class="form-control" />
+                    <button type="submit" id="add" class="btn btn-primary mb-4">Add</button>
+                    <button type="button" id="reset" class="btn btn-primary mb-4" onclick="ResetForm()">Reset</button>
+                    <button type="button" id="update" class="btn btn-info mb-4" style="float: right;display: none;">Update</button>
+                </form>
+            </div>
+            <div class="col-8">
+                  <div class="alert alert-success" role="alert" style="display: none;" id="showalert2">
+                   Add Employee Successfully!!
+                  </div>
+                 <div class="alert alert-danger" role="alert" style="display: none;" id="showalert">
+                   Delete Employee Successfully!!
+                  </div>
+                  <div class="alert alert-info" role="alert" style="display: none;" id="showalert3">
+                   Update Employee Successfully!!
+                  </div>
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employee-list">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+          apiKey: "AIzaSyCwXOyFR7HowmdSsnSODdfSdaJA0WoA2_g",
+          authDomain: "usercrud-6daac.firebaseapp.com",
+          databaseURL: "https://usercrud-6daac-default-rtdb.firebaseio.com",
+          projectId: "usercrud-6daac",
+          storageBucket: "usercrud-6daac.appspot.com",
+          messagingSenderId: "241494488448",
+          appId: "1:241494488448:web:da0bf6065719c2d5813d65",
+          measurementId: "G-GB3TX16NZG"
+        };
+        // // Initialize Firebase
+        // firebase.initializeApp(firebaseConfig);
+        // firebase.analytics();
+
+        // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+
+      var db = firebase.firestore();
+      db.settings({timestampsInSnapshots: true});
+      </script>
+</body>
+ <script type="text/javascript" src="js/mdb.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+</html>
